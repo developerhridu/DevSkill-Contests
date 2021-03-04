@@ -1,5 +1,7 @@
-/**  ---------- Bubble Sort -------------------- 
- * Bubble sort works by repeatedly swapping the adjacent elements if they are in wrong order.
+/** 
+ * ----------- Sorry For My Delayed -----------
+ *  ---------- Bubble Sort -------------------- 
+ * Bubble sort works by repeatedly swapping the adjacent elements if they are in wrong order.  
  * first it finds the smallest element in the array
  * then shifts the smallest element at the beginning (at index 0) by swaping
  * then array size is decresed by 1
@@ -10,6 +12,11 @@
  **/
 
 /** ------------- Insertion Sort-----------------
+ * Insertion sort compare the elements at index 0 to its  predecessor
+ * if the predecessor is smaller than the pointed element (element of index 0) then swap the elements
+ * if the predecessor is larger than the pointed element move the pointer one position up 
+ * 
+ * 
  * 
  **/
 
@@ -21,12 +28,12 @@ void bubble_sort(vector<int> &arr, int n)
 {
     cout << "Bubble Sort : ";
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++) // pointer start from index 0,
     {
-        for (int j = i + 1; j < n; j++)
+        for (int j = i + 1; j < n; j++) // this loop finds the smallest element from rest array (where size of the array is decresed b 1)
         {
-            if (arr[i] > arr[j])
-                swap(arr[i], arr[j]);
+            if (arr[i] > arr[j])      // this if statement check, is the pointed element greater than the next immediate element or not.
+                swap(arr[i], arr[j]); // if the statement is true then it swap the elements
         }
     }
 }
@@ -36,9 +43,9 @@ void insertionSort(vector<int> &arr, int n)
 {
     cout << "Insertion Sort : ";
     int key;
-    for (int i = 1; i < n; i++)
+    for (int i = 1; i < n; i++) // this loop iterate the array from arr[1] to arr[n]
     {
-        key = arr[i];
+        key = arr[i]; // assigning the key to arr[i]
         int j = i - 1;
         while (j >= 0 && arr[j] > key)
         {
@@ -68,11 +75,11 @@ int main()
     {
         cin >> arr[i];
     }
-    printArray(arr, n);
+    printArray(arr, n); // Prints the array taken from user as input
     bubble_sort(arr, n);
-    printArray(arr, n);
+    printArray(arr, n); //Print the sorted array(using Bubble Sort) as output
     insertionSort(arr, n);
-    printArray(arr, n);
+    printArray(arr, n); //Print the sorted array(using Insertion Sort) as output
 
     return 0;
 }

@@ -1,43 +1,63 @@
+/** ---------- Sorry For My Delayed. My Mid semester exam is going on--------------------------   
+ * ---------- Counting Sort-------------------------- 
+ * Counting Sort algorithm sorts an array by counting the frequency of unique element in the array.
+ * The count is stored in a separate array( Frequence array). 
+ * Then sorts the array by mapping the count as an index of that separate array(frequence array)
+ * 
+ **/
 #include <bits/stdc++.h>
 using namespace std;
 
 void countingSort(vector<int> &arr)
 {
-    // Finding the highest and lowest value of the array
-    int low = *min_element(arr.begin(), arr.end());
-    int high = *max_element(arr.begin(), arr.end());
+    cout << "Sorted Array : ";
 
-    vector<int> freq(high - low + 1);
+    // Finds the maximum value of the array
+    int max = arr[0];
+    for (int i = 0; i < arr.size(); i++)
+    {
+        if (arr[i] > max)
+            max = arr[i];
+    }
+
+    // Finds the minimum value of the array
+    int min = arr[0];
+    for (int i = 0; i < arr.size(); i++)
+    {
+        if (arr[i] < max)
+            min = arr[i];
+    }
+
+    int range = max - min + 1;
+    // Create a frequency array to store count of inidividul
+    vector<int> freq(range);
     for (auto elem : arr)
         freq[elem]++;
 
     int ind = 0;
 
     // Sorting values
-    for (int value = low; value <= high; value++)
+    for (int value = min; value <= max; value++)
     {
         int cnt = freq[value];
-        while (cnt--)
+        for (int i = 0; i < cnt; i++)
         {
             arr[ind++] = value; // assigning value to array ind
         }
     }
 }
 
-bool isValid(vector<int> &arr)
+// function to print array
+void printArray(vector<int> &arr, int n)
 {
-    int n = arr.size();
-    for (int i = 0; i + 1 < n; i++)
-    {
-        if (arr[i] > arr[i + 1])
-            return false;
-    }
-    return true;
+    for (auto it : arr)
+        cout << it << " ";
+    cout << endl;
 }
 
 int main()
 {
-    int n;
+    int n; // size of the array
     cin >> n;
     vector<int> arr(n);
 
@@ -46,19 +66,10 @@ int main()
     {
         cin >> arr[i];
     }
+    cout << "Input Array : ";
+    printArray(arr, n); //Prints input array
     countingSort(arr);
-
-    // Printing sorted values
-    for (auto it : arr)
-        cout << it << " ";
-
-    // validity function is Checking if the array is sorted or not
-    bool validity = isValid(arr);
-
-    if (validity)
-        puts("OK");
-    else
-        puts("NOT OK");
+    printArray(arr, n); // Prints Output Sorted array
 
     return 0;
 }
